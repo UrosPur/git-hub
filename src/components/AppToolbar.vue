@@ -18,6 +18,7 @@
             title: {
 
                 type:String,
+                default: 'github app'
 
             }
 
