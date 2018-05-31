@@ -7,6 +7,19 @@
 
         <div class="content">
             <app-search :query.sync="query"  ></app-search>
+
+        <v-ons-list>
+            <v-ons-list-header>Repositories of {{ query }}</v-ons-list-header>
+            <v-ons-list-item  v-for="repo in repos"
+                              :key="repos.id"
+                              :repo="repo" >
+
+
+                {{ repo.name }}   {{ repo.description }}
+
+
+            </v-ons-list-item>
+        </v-ons-list>
         </div>
 
     </v-ons-page>
@@ -54,6 +67,7 @@
             githubServices.getRepo(this.query)
                 .then((response)=>{
 
+                    console.log('tesst',response.data[0].owner.avatar_url)
                     this.repos = response.data
                 })
 
