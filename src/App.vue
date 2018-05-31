@@ -6,7 +6,7 @@
         <app-toolbar></app-toolbar>
 
         <div class="content">
-        <app-search :query.sync="query"  ></app-search>
+            <app-search :query.sync="query"  ></app-search>
         </div>
 
     </v-ons-page>
@@ -15,6 +15,8 @@
 
     import AppToolbar from './components/AppToolbar'
     import AppSearch from './components/AppSearch'
+    import {githubServices} from "./services/GitHub";
+    import debounce from 'lodash/debounce'
 
     export default {
         components: {
@@ -22,17 +24,44 @@
             AppSearch,
         },
 
+        watch: {
+
+            query: function(query) {
+
+                this.getRepo()
+
+                // debounce(githubServices.getRepo(query), 500)
+
+                this.query = query
+
+                console.log(query)
+            }
+
+        },
+
         data() {
             return {
                 title: 'My app',
                 query:"",
+                repos:'',
 
             };
         },
         methods: {
-            alert() {
-                this.$ons.notification.alert('This is an Onsen UI alert notification test.');
-            }
+
+            getRepo:debounce(function(){
+                // console.log(this.query)
+            githubServices.getRepo(this.query)
+                .then((response)=>{
+
+                    this.repos = response.data
+                })
+
+    },500)
+
+
+
+
         }
     };
 </script>

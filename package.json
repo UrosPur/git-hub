@@ -12,6 +12,7 @@
     "onsenui": "~2.7.0",
     "vue": "~2.5.0",
     "vue-loader": "11.0.0",
+    "vue-lodash": "^2.0.0",
     "vue-onsenui": "~2.3.0",
     "vue-template-compiler": "~2.5.0"
   },
