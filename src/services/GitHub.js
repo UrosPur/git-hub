@@ -1,9 +1,9 @@
-// git hub token  89f728c8be18b5723b9f88dc404596a06743c3ae+-
+// git hub token  14697593579520c929673449d3ad3f87400c2201+-
 
 import axios from 'axios'
 
 
-const API_TOKEN = '89f728c8be18b5723b9f88dc404596a06743c3ae';
+const API_TOKEN = '14697593579520c929673449d3ad3f87400c2201';
 
 export default class  GitHubServices {
 
