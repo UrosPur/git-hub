@@ -5,7 +5,7 @@
 
         <div class="content">
             <app-search :query.sync="query"></app-search>
-            <v-ons-button modifier="cta" style="margin: 6px 0">view profile</v-ons-button>
+            <v-ons-button @click="onClick" modifier="cta" style="margin: 6px 0">view profile</v-ons-button>
 
             <!--<v-ons-progress-bar :value="progress"></v-ons-progress-bar>-->
 
@@ -69,6 +69,7 @@
     import debounce from 'lodash/debounce'
     import EmptyState from './components/EmptyState'
     import NoUser from './components/NoUser'
+    import Profile from './components/Profile'
 
     export default {
         components: {
@@ -76,6 +77,7 @@
             AppSearch,
             EmptyState,
             NoUser,
+
         },
 
         watch: {
@@ -113,7 +115,7 @@
                 githubServices.getRepo(this.query)
                     .then((response) => {
 
-                        console.log('tesst', response.data)
+                        // console.log('tesst', response.data)
 
                         this.repos = response.data
 
@@ -139,7 +141,15 @@
                     })
 
 
-            }, 500)
+            }, 500),
+
+            onClick() {
+                this.$emit('push-page',{
+
+                    extends: Profile,
+
+                })
+            },
 
 
         },

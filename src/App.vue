@@ -1,6 +1,7 @@
 <template>
     <v-ons-navigator swipeable
                      :page-stack="pageStack"
+                     @push-page="pushPage"
     >
     </v-ons-navigator>
 </template>
@@ -21,6 +22,13 @@ import HomePage from './HomePage'
 
             }
 
+        },
+        methods: {
+
+            pushPage(event) {
+                // console.log(event)
+                this.pageStack.push(event)
+            }
         },
     };
 </script>
