@@ -8,7 +8,9 @@
         <div class="content">
             <app-search :query.sync="query"  ></app-search>
 
-        <v-ons-list>
+            <!--<v-ons-progress-circular v-if="query" indeterminate>-->
+
+        <v-ons-list v-if="test">
             <v-ons-list-header>Repositories of {{ query }}</v-ons-list-header>
             <v-ons-list-item  v-for="repo in repos"
                               :key="repos.id"
@@ -57,6 +59,7 @@
                 title: 'My app',
                 query:"",
                 repos:'',
+                test: false
 
             };
         },
@@ -67,8 +70,13 @@
             githubServices.getRepo(this.query)
                 .then((response)=>{
 
-                    console.log('tesst',response.data[0].owner.avatar_url)
+                    console.log('tesst',response.data)
                     this.repos = response.data
+
+                   if(response.data.lenght){
+                        this.test = true
+                   }
+
                 })
 
     },500)
